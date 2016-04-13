@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 14, 2016 12:50:58 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="stud.Payment" table="payment" catalog="studentmanagement">
+        <id name="paymentId" type="int">
+            <column name="PaymentId" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="contract" class="stud.Contract" fetch="select">
+            <column name="contractid" />
+        </many-to-one>
+        <many-to-one name="account" class="stud.Account" fetch="select">
+            <column name="AccountId" />
+        </many-to-one>
+        <property name="paymentAmount" type="double">
+            <column name="PaymentAmount" precision="12" not-null="true" />
+        </property>
+        <property name="paymnetDate" type="date">
+            <column name="PaymnetDate" length="10" not-null="true" />
+        </property>
+        <property name="empId" type="int">
+            <column name="EmpId" not-null="true" />
+        </property>
+        <property name="tenantId" type="string">
+            <column name="TenantId" length="15" not-null="true" />
+        </property>
+        <property name="roomId" type="int">
+            <column name="RoomId" not-null="true" />
+        </property>
+        <property name="paymentType" type="string">
+            <column name="paymentType" length="25" />
+        </property>
+    </class>
+</hibernate-mapping>

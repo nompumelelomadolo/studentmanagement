@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 14, 2016 12:50:58 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="stud.Account" table="account" catalog="studentmanagement">
+        <id name="accountId" type="int">
+            <column name="AccountId" />
+            <generator class="assigned" />
+        </id>
+        <property name="balance" type="double">
+            <column name="Balance" precision="12" not-null="true" />
+        </property>
+        <property name="bankName" type="string">
+            <column name="bankName" length="20" />
+        </property>
+        <set name="payments" table="payment" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="AccountId" />
+            </key>
+            <one-to-many class="stud.Payment" />
+        </set>
+    </class>
+</hibernate-mapping>

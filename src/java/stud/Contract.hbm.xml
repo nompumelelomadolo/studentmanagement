@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 14, 2016 12:50:58 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="stud.Contract" table="contract" catalog="studentmanagement">
+        <id name="contractId" type="int">
+            <column name="ContractId" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="room" class="stud.Room" fetch="select">
+            <column name="RoomId" not-null="true" />
+        </many-to-one>
+        <property name="startDate" type="date">
+            <column name="StartDate" length="10" not-null="true" />
+        </property>
+        <property name="endDate" type="date">
+            <column name="EndDate" length="10" not-null="true" />
+        </property>
+        <set name="tenants" table="tenant" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="contractid" />
+            </key>
+            <one-to-many class="stud.Tenant" />
+        </set>
+        <set name="payments" table="payment" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="contractid" />
+            </key>
+            <one-to-many class="stud.Payment" />
+        </set>
+    </class>
+</hibernate-mapping>

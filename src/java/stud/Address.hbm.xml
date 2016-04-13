@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 14, 2016 12:50:58 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="stud.Address" table="address" catalog="studentmanagement">
+        <id name="addressId" type="int">
+            <column name="AddressId" />
+            <generator class="assigned" />
+        </id>
+        <property name="addressNo" type="int">
+            <column name="AddressNo" not-null="true" />
+        </property>
+        <property name="streetName" type="string">
+            <column name="StreetName" length="25" not-null="true" />
+        </property>
+        <property name="city" type="string">
+            <column name="City" length="25" not-null="true" />
+        </property>
+        <property name="province" type="string">
+            <column name="Province" length="25" not-null="true" />
+        </property>
+        <property name="country" type="string">
+            <column name="Country" length="25" not-null="true" />
+        </property>
+        <set name="tenants" table="tenant" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="AddressId" />
+            </key>
+            <one-to-many class="stud.Tenant" />
+        </set>
+        <set name="nextofkins" table="nextofkin" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="AddressId" />
+            </key>
+            <one-to-many class="stud.Nextofkin" />
+        </set>
+        <set name="employees" table="employee" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="AddressId" />
+            </key>
+            <one-to-many class="stud.Employee" />
+        </set>
+        <set name="tenants_1" table="tenant" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="AddressId" />
+            </key>
+            <one-to-many class="stud.Tenant" />
+        </set>
+    </class>
+</hibernate-mapping>

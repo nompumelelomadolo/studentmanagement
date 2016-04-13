@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 14, 2016 12:50:58 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="stud.Tenant" table="tenant" catalog="studentmanagement">
+        <id name="tenantId" type="string">
+            <column name="TenantId" length="15" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="contract" class="stud.Contract" fetch="select">
+            <column name="contractid" />
+        </many-to-one>
+        <many-to-one name="nextofkin" class="stud.Nextofkin" fetch="select">
+            <column name="KinId" />
+        </many-to-one>
+        <many-to-one name="employee" class="stud.Employee" fetch="select">
+            <column name="empid" />
+        </many-to-one>
+        <many-to-one name="address" class="stud.Address" fetch="select">
+            <column name="AddressId" />
+        </many-to-one>
+        <property name="studentNo" type="string">
+            <column name="studentNo" length="15" unique="true" />
+        </property>
+        <property name="name" type="string">
+            <column name="name" length="25" />
+        </property>
+        <property name="surname" type="string">
+            <column name="surname" length="25" />
+        </property>
+        <property name="gender" type="java.lang.Character">
+            <column name="gender" length="1" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="35" not-null="true" unique="true" />
+        </property>
+        <property name="contactNo" type="string">
+            <column name="contactNo" length="10" />
+        </property>
+        <property name="schoolName" type="string">
+            <column name="schoolName" length="25" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="20" />
+        </property>
+    </class>
+</hibernate-mapping>

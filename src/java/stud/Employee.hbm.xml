@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 14, 2016 12:50:58 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="stud.Employee" table="employee" catalog="studentmanagement">
+        <id name="empId" type="int">
+            <column name="EmpId" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="address" class="stud.Address" fetch="select">
+            <column name="AddressId" />
+        </many-to-one>
+        <property name="empName" type="string">
+            <column name="EmpName" length="25" not-null="true" />
+        </property>
+        <property name="empSurname" type="string">
+            <column name="EmpSurname" length="25" not-null="true" />
+        </property>
+        <property name="contact" type="int">
+            <column name="Contact" not-null="true" />
+        </property>
+        <property name="empType" type="string">
+            <column name="EmpType" length="50" not-null="true" />
+        </property>
+        <property name="userName" type="string">
+            <column name="UserName" length="15" not-null="true" />
+        </property>
+        <property name="password" type="string">
+            <column name="Password" length="15" not-null="true" />
+        </property>
+        <property name="email" type="string">
+            <column name="Email" length="50" not-null="true" />
+        </property>
+        <set name="tenants" table="tenant" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="empid" />
+            </key>
+            <one-to-many class="stud.Tenant" />
+        </set>
+    </class>
+</hibernate-mapping>
